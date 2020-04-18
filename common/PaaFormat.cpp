@@ -26,7 +26,6 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 
 		if (selector == formatSelectorAbout)
 		{
-			//MessageBox(GetActiveWindow(), std::to_string(OMP_DYNAMIC).c_str(), "Hi", MB_OK);
 			AboutRecordPtr aboutRecord = reinterpret_cast<AboutRecordPtr>(formatParamBlock);
 			sSPBasic = aboutRecord->sSPBasic;
 			gPluginRef = reinterpret_cast<SPPluginRef>(aboutRecord->plugInRef);
@@ -106,7 +105,6 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 			}
 		}
 
-		// release any suites that we may have acquired
 		if (selector == formatSelectorAbout ||
 			selector == formatSelectorWriteFinish ||
 			selector == formatSelectorReadFinish ||
@@ -142,7 +140,9 @@ static void DoReadStart() {
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
-		MessageBox(GetActiveWindow(), (std::string("Error during saving! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!", MB_OK | MB_ICONSTOP);
+		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		*gResult = readErr;
+		return;
 	}
 
 	std::vector<uint8_t> fileData;
@@ -151,8 +151,14 @@ static void DoReadStart() {
 	Read(fileSize.QuadPart, fileData.data());
 
 	auto paa = grad_aff::Paa(fileData);
-	paa.readPaa(true);
-
+	try {
+		paa.readPaa(true);
+	}
+	catch (std::runtime_error& ex) {
+		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		*gResult = readErr;
+		return;
+	}
 	auto width = paa.mipMaps[0].width;
 	auto height = paa.mipMaps[0].height;
 
@@ -195,7 +201,9 @@ static void DoReadContinue() {
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
-		MessageBox(GetActiveWindow(), (std::string("Error during saving! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!", MB_OK | MB_ICONSTOP);
+		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		*gResult = readErr;
+		return;
 	}
 
 	std::vector<uint8_t> fileData;
@@ -285,16 +293,19 @@ static void DoWriteStart() {
 
 	if (!isPowerOfTwo(width) || !isPowerOfTwo(height)) {
 		MessageBox(GetActiveWindow(), "Dimensions have to be a power of two (2^n)", "PAA save error!", MB_OK | MB_ICONSTOP);
+		*gResult = paramErr;
 		return;
 	}
 
 	if (width != height && width / 2 != height && width != height / 2) {
 		MessageBox(GetActiveWindow(), "Aspect ratio has to be 1:1, 1:2 or 2:1", "PAA save error!", MB_OK | MB_ICONSTOP);
+		*gResult = paramErr;
 		return;
 	}
 
 	if (gFormatRecord->imageMode != plugInModeRGBColor) {
 		MessageBox(GetActiveWindow(), "Currently only RGB Mode is supported", "PAA save error!", MB_OK | MB_ICONSTOP);
+		*gResult = paramErr;
 		return;
 	}
 

@@ -210,10 +210,17 @@ static void DoReadContinue() {
 	fileData.resize(fileSize.QuadPart);
 
 	Read(fileSize.QuadPart, fileData.data());
-
+	
 	auto paa = grad_aff::Paa(fileData);
-	paa.readPaa();
-
+	
+	try {
+		paa.readPaa();
+	}
+	catch (std::runtime_error& ex) {
+		MessageBox(GetActiveWindow(), (std::string("Error during reading! ") + ex.what()).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		*gResult = readErr;
+		return;
+	}
 	auto width = paa.mipMaps[0].width;
 	auto height = paa.mipMaps[0].height;
 
@@ -347,22 +354,28 @@ static void DoWriteStart() {
 	}
 
 	auto paa = grad_aff::Paa();
-	paa.mipMaps.clear();
-
-	paa.hasTransparency = hasTransparency;
-	MipMap mipMap;
-	mipMap.height = height;
-	mipMap.width = width;
-	mipMap.data = data;
-	mipMap.dataLength = mipMap.data.size();
-
-	paa.mipMaps.clear();
-	paa.mipMaps.push_back(mipMap);
-	paa.calculateMipmapsAndTaggs();
-
 	auto dataStream = std::stringstream(std::string());
-	paa.writePaa(dataStream);
+	try {
+		paa.mipMaps.clear();
 
+		paa.hasTransparency = hasTransparency;
+		MipMap mipMap;
+		mipMap.height = height;
+		mipMap.width = width;
+		mipMap.data = data;
+		mipMap.dataLength = mipMap.data.size();
+
+		paa.mipMaps.clear();
+		paa.mipMaps.push_back(mipMap);
+		paa.calculateMipmapsAndTaggs();
+
+		paa.writePaa(dataStream);
+	}
+	catch (std::runtime_error& ex) {
+		MessageBox(GetActiveWindow(), (std::string("Error during saving! ") + ex.what()).c_str(), "PAA save error!", MB_OK | MB_ICONSTOP);
+		*gResult = writErr;
+		return;
+	}
 	auto output = dataStream.str();
 	auto dataBuf = std::vector<uint8_t>(output.begin(), output.end());
 
@@ -371,7 +384,7 @@ static void DoWriteStart() {
 	gFormatRecord->data = NULL;
 
 	if (err != 0) {
-		MessageBox(GetActiveWindow(), (std::string("Error during saving! Code: ") + std::to_string(err)).c_str(), "PAA save error!", MB_OK | MB_ICONSTOP);
+		MessageBox(GetActiveWindow(), (std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!", MB_OK | MB_ICONSTOP);
 	}
 }
 
@@ -401,11 +414,7 @@ static void Read(int32_t count, void* buffer) {
 	auto result = PSSDKRead(gFormatRecord->dataFork, gFormatRecord->posixFileDescriptor, gFormatRecord->pluginUsingPOSIXIO, &readCount, buffer);
 
 	*gResult = result;
-	if (result == noErr && readCount != count) {
-		MessageBox(GetActiveWindow(), "Disk is Full!", "PAA save error!", MB_OK | MB_ICONSTOP);
-		*gResult = eofErr;
-	}
-	else if (result != noErr) {
+	if (result != noErr) {
 		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
 	}
 }

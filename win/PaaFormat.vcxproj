@@ -202,7 +202,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /GS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>G:\Repos\grad_aff\out\install\x64-Debug-lite\include;..\common;..\common\win;..\..\..\common\Includes;..\..\..\..\PhotoshopAPI\Photoshop;..\..\..\..\PhotoshopAPI\PICA_SP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GRAD_AFF_DEBUG)\include;..\common;..\common\win;..\..\..\common\Includes;..\..\..\..\PhotoshopAPI\Photoshop;..\..\..\..\PhotoshopAPI\PICA_SP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ISOLATION_AWARE_ENABLED=1;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;WIN32=1;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
@@ -226,7 +226,7 @@
       <AdditionalDependencies>grad_aff.lib;odbc32.lib;odbccp32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\..\Output\Win\Debug64\PaaFormat.8bi</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>G:\Repos\grad_aff\out\build\x64-Debug-lite;..\common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GRAD_AFF_DEBUG)\lib;..\common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\..\..\..\Output\Objs\paaformat\Debug64/PaaFormat.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -237,9 +237,9 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "C:\Program Files\Adobe\Adobe Photoshop CC 2018\Plug-ins\File Formats\$(ProjectName).8bi"
-copy /Y "$(OutDir)$(ProjectName).pdb" "C:\Program Files\Adobe\Adobe Photoshop CC 2018\Plug-ins\File Formats\$(ProjectName).pdb"
-copy /Y "$(OutDir)$(ProjectName).bsc" "C:\Program Files\Adobe\Adobe Photoshop CC 2018\Plug-ins\File Formats\$(ProjectName).bsc"</Command>
+      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).8bi"
+copy /Y "$(OutDir)$(ProjectName).pdb" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).pdb"
+copy /Y "$(OutDir)$(ProjectName).bsc" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).bsc"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -255,7 +255,7 @@ copy /Y "$(OutDir)$(ProjectName).bsc" "C:\Program Files\Adobe\Adobe Photoshop CC
     <ClCompile>
       <AdditionalOptions>/MP /GS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>G:\Repos\grad_aff\out\install\x64-Release-lite\include;..\common;..\common\win;..\..\..\common\Includes;..\..\..\..\PhotoshopAPI\Photoshop;..\..\..\..\PhotoshopAPI\PICA_SP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GRAD_AFF)\include;..\common;..\common\win;..\..\..\common\Includes;..\..\..\..\PhotoshopAPI\Photoshop;..\..\..\..\PhotoshopAPI\PICA_SP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ISOLATION_AWARE_ENABLED=1;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;WIN32=1;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -292,7 +292,7 @@ copy /Y "$(OutDir)$(ProjectName).bsc" "C:\Program Files\Adobe\Adobe Photoshop CC
       <AdditionalDependencies>grad_aff.lib;odbc32.lib;odbccp32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\..\Output\Win\Release64\PaaFormat.8bi</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>G:\Repos\grad_aff\out\build\x64-Release-lite;..\common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GRAD_AFF)\lib;..\common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\..\..\..\Output\Objs\paaformat\Release64/PaaFormat.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -306,8 +306,7 @@ copy /Y "$(OutDir)$(ProjectName).bsc" "C:\Program Files\Adobe\Adobe Photoshop CC
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "C:\Program Files\Adobe\Adobe Photoshop CC 2018\Plug-ins\File Formats\$(ProjectName).8bi"
-copy /Y "$(OutDir)$(ProjectName).bsc" "C:\Program Files\Adobe\Adobe Photoshop CC 2018\Plug-ins\File Formats\$(ProjectName).bsc"</Command>
+      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).8bi"</Command>
     </PostBuildEvent>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

@@ -97,8 +97,9 @@ BEGIN
     CONTROL         IDB_LOGO_BITMAP,IDC_LOGO_CONTROL,"Static",SS_BITMAP,69,7,171,158
     LTEXT           "PAA Photoshop Plugin by Gruppe Adler",IDC_DESCRIPTION_TEXT,54,181,125,8
     CONTROL         " <a>www.gruppe-adler.de</a> ",IDC_HP_LINK,"SysLink",WS_TABSTOP,182,181,74,9
-    LTEXT           "Report Issues at:",IDC_ISSUE_TEXT,81,195,57,8
-    CONTROL         "<a>github.com/gruppe-adler</a>",IDC_GITHUB_LINK,"SysLink",WS_TABSTOP,139,195,82,11
+    LTEXT           "Report Issues at:",IDC_ISSUE_TEXT,25,195,57,8
+    CONTROL         "<a>https://github.com/gruppe-adler/PaaPhotoshopPlugin/issues</a>",IDC_GITHUB_LINK,
+                    "SysLink",WS_TABSTOP,88,195,198,11
 END
 
 #endif    // English (United Kingdom) resources

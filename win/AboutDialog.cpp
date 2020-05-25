@@ -70,7 +70,7 @@ INT_PTR CALLBACK AboutDialog::AboutDialogProc(HWND hwnd, UINT Message, WPARAM wP
             {
             case NM_CLICK:
             case NM_RETURN:
-                ShellExecute(NULL, "open", "http://github.gruppe-adler.de/", NULL, NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, "open", "https://github.com/gruppe-adler/PaaPhotoshopPlugin/issues", NULL, NULL, SW_SHOWNORMAL);
                 break;
             }
             break;

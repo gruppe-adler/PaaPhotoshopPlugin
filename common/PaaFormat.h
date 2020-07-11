@@ -12,9 +12,11 @@
 #include <string>
 #include <vector>
 
-#include "..\win\AboutDialog.h"
-#include "..\win\paaformat-sym.h"
-
+#ifdef _WIN32
+    #include <Windows.h>
+    #include "..\win\AboutDialog.h"
+    #include "..\win\paaformat-sym.h"
+#endif
 extern SPPluginRef gPluginRef;
 extern FormatRecordPtr gFormatRecord;
 extern int16* gResult;
@@ -47,4 +49,5 @@ static void DoEstimateStart();
 static void DoEstimateContinue();
 static void DoEstimateFinish();
 
-static bool isPowerOfTwo(uint32_t x);
+constexpr static bool isPowerOfTwo(uint32_t x) noexcept;
+static void DisplayMessage(std::string titel, std::string message);

@@ -140,7 +140,7 @@ static void DoReadStart() {
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
-		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -150,12 +150,12 @@ static void DoReadStart() {
 
 	Read(fileSize.QuadPart, fileData.data());
 
-	auto paa = grad_aff::Paa(fileData);
+	auto paa = grad_aff::Paa();
 	try {
-		paa.readPaa(true);
+		paa.readPaa(fileData, true);
 	}
 	catch (std::runtime_error& ex) {
-		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -201,7 +201,7 @@ static void DoReadContinue() {
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
-		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -211,13 +211,13 @@ static void DoReadContinue() {
 
 	Read(fileSize.QuadPart, fileData.data());
 	
-	auto paa = grad_aff::Paa(fileData);
+	auto paa = grad_aff::Paa();
 	
 	try {
-		paa.readPaa();
+		paa.readPaa(fileData);
 	}
 	catch (std::runtime_error& ex) {
-		MessageBox(GetActiveWindow(), (std::string("Error during reading! ") + ex.what()).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during reading! ") + ex.what()).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -299,19 +299,13 @@ static void DoWriteStart() {
 	const int height = (gFormatRecord->PluginUsing32BitCoordinates ? gFormatRecord->imageSize32.v : gFormatRecord->imageSize.v);
 
 	if (!isPowerOfTwo(width) || !isPowerOfTwo(height)) {
-		MessageBox(GetActiveWindow(), "Dimensions have to be a power of two (2^n)", "PAA save error!", MB_OK | MB_ICONSTOP);
-		*gResult = paramErr;
-		return;
-	}
-
-	if (width != height && width / 2 != height && width != height / 2) {
-		MessageBox(GetActiveWindow(), "Aspect ratio has to be 1:1, 1:2 or 2:1", "PAA save error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage("Dimensions have to be a power of two (2^n)", "PAA save error!");
 		*gResult = paramErr;
 		return;
 	}
 
 	if (gFormatRecord->imageMode != plugInModeRGBColor) {
-		MessageBox(GetActiveWindow(), "Currently only RGB Mode is supported", "PAA save error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage("Currently only RGB Mode is supported", "PAA save error!");
 		*gResult = paramErr;
 		return;
 	}
@@ -354,7 +348,7 @@ static void DoWriteStart() {
 	}
 
 	auto paa = grad_aff::Paa();
-	auto dataStream = std::stringstream(std::string());
+	std::vector<uint8_t> dataOut;
 	try {
 		paa.mipMaps.clear();
 
@@ -369,22 +363,20 @@ static void DoWriteStart() {
 		paa.mipMaps.push_back(mipMap);
 		paa.calculateMipmapsAndTaggs();
 
-		paa.writePaa(dataStream);
+		dataOut = paa.writePaa();
 	}
 	catch (std::runtime_error& ex) {
-		MessageBox(GetActiveWindow(), (std::string("Error during saving! ") + ex.what()).c_str(), "PAA save error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during saving! ") + ex.what()).c_str(), "PAA save error!");
 		*gResult = writErr;
 		return;
 	}
-	auto output = dataStream.str();
-	auto dataBuf = std::vector<uint8_t>(output.begin(), output.end());
 
-	Write(dataBuf.size(), dataBuf.data());
+	Write(dataOut.size(), dataOut.data());
 	auto err = GetLastError();
 	gFormatRecord->data = NULL;
 
 	if (err != 0) {
-		MessageBox(GetActiveWindow(), (std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!");
 	}
 }
 
@@ -396,7 +388,7 @@ static void DoWriteFinish() {
 
 }
 
-static bool isPowerOfTwo(uint32_t x) {
+constexpr static bool isPowerOfTwo(uint32_t x) noexcept {
 	return (x != 0) && ((x & (x - 1)) == 0);
 }
 
@@ -405,7 +397,7 @@ static void FromStart() {
 
 	*gResult = result;
 	if (result != noErr) {
-		MessageBox(GetActiveWindow(), (std::string("Error! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!");
 	}
 }
 
@@ -415,7 +407,7 @@ static void Read(int32_t count, void* buffer) {
 
 	*gResult = result;
 	if (result != noErr) {
-		MessageBox(GetActiveWindow(), (std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 	}
 }
 
@@ -425,10 +417,16 @@ static void Write(int32_t count, void* buffer) {
 
 	*gResult = result;
 	if (result == noErr && writeCount != count) {
-		MessageBox(GetActiveWindow(), "Disk is Full!", "PAA save error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage("Disk is Full!", "PAA save error!");
 		*gResult = eofErr;
 	}
 	else if (result != noErr) {
-		MessageBox(GetActiveWindow(), (std::string("Error during writing! Code: ") + std::to_string(GetLastError())).c_str(), "PAA write error!", MB_OK | MB_ICONSTOP);
+		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(GetLastError())).c_str(), "PAA write error!");
 	}
+}
+
+static void DisplayMessage(std::string titel, std::string message) {
+#ifdef _WIN32
+	MessageBox(GetActiveWindow(), titel.c_str(), message.c_str(), MB_OK | MB_ICONSTOP);
+#endif
 }

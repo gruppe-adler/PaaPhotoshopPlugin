@@ -155,7 +155,7 @@ static void DoReadStart() {
 		paa.readPaa(fileData, true);
 	}
 	catch (std::runtime_error& ex) {
-		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
+		DisplayMessage((std::string("Error during reading! Code: ") + ex.what()).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}

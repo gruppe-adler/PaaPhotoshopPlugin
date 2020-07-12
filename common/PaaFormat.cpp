@@ -26,12 +26,13 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 
 		if (selector == formatSelectorAbout)
 		{
+#ifdef _WIN32
 			AboutRecordPtr aboutRecord = reinterpret_cast<AboutRecordPtr>(formatParamBlock);
 			sSPBasic = aboutRecord->sSPBasic;
 			gPluginRef = reinterpret_cast<SPPluginRef>(aboutRecord->plugInRef);
 			auto aDiag = new AboutDialog();
 			aDiag->RunModal(GetDLLInstance(gPluginRef), IDD_ABOUT_DIALOG, GetActiveWindow());
-
+#endif
 		}
 		else
 		{
@@ -113,6 +114,9 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 			selector == formatSelectorFilterFile ||
 			*gResult != noErr)
 		{
+#if __PIMac__
+            UnLoadRuntimeFunctions();
+#endif
 			PIUSuitesRelease();
 		}
 
@@ -120,6 +124,9 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 
 	catch (...)
 	{
+#if __PIMac__
+        UnLoadRuntimeFunctions();
+#endif
 		if (NULL != result)
 			*result = -1;
 	}
@@ -130,13 +137,22 @@ static void DoFilterFile() {
 	return;
 }
 
-static void DoReadPrepare() noexcept {
+static void DoReadPrepare() {
 	gFormatRecord->maxData = 0;
+    
+#if __PIMac__
+    if(gFormatRecord->hostSupportsPOSIXIO)
+    {
+        gFormatRecord->pluginUsingPOSIXIO = true;
+    }
+#endif
 }
 
 static void DoReadStart() {
 	FromStart();
-
+    
+    size_t filesize = 0;
+#if _WIN32
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
@@ -144,11 +160,18 @@ static void DoReadStart() {
 		*gResult = readErr;
 		return;
 	}
+    filesize = fileSize.QuadPart;
+#endif
+#if __PIMac__
+    struct stat fileStat;
+    fstat(gFormatRecord->posixFileDescriptor, &fileStat);
+    filesize = fileStat.st_size;
+#endif
 
 	std::vector<uint8_t> fileData;
-	fileData.resize(fileSize.QuadPart);
+	fileData.resize(filesize);
 
-	Read(fileSize.QuadPart, fileData.data());
+	Read(filesize, fileData.data());
 
 	auto paa = grad_aff::Paa();
 	try {
@@ -197,7 +220,8 @@ static void DoReadStart() {
 
 static void DoReadContinue() {
 	FromStart();
-
+    int filesize = 0;
+#ifdef _WIN32
 	LARGE_INTEGER fileSize;
 	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
 	if (!ret) {
@@ -205,11 +229,18 @@ static void DoReadContinue() {
 		*gResult = readErr;
 		return;
 	}
+    filesize = fileSize.QuadPart;
+#endif
+#if __PIMac__
+    struct stat fileStat;
+    fstat(gFormatRecord->posixFileDescriptor, &fileStat);
+    filesize = fileStat.st_size;
+#endif
+    
+    std::vector<uint8_t> fileData;
+    fileData.resize(filesize);
 
-	std::vector<uint8_t> fileData;
-	fileData.resize(fileSize.QuadPart);
-
-	Read(fileSize.QuadPart, fileData.data());
+	Read(filesize, fileData.data());
 	
 	auto paa = grad_aff::Paa();
 	
@@ -288,6 +319,14 @@ static void DoEstimateFinish() {
 
 static void DoWritePrepare() {
 	gFormatRecord->maxData = 0;
+    
+     
+    #if __PIMac__
+        if(gFormatRecord->hostSupportsPOSIXIO)
+        {
+            gFormatRecord->pluginUsingPOSIXIO = true;
+        }
+    #endif
 }
 
 static void DoWriteStart() {
@@ -372,12 +411,15 @@ static void DoWriteStart() {
 	}
 
 	Write(dataOut.size(), dataOut.data());
-	auto err = GetLastError();
+    gFormatRecord->data = NULL;
+    /*
+    auto err = GetLastError();
 	gFormatRecord->data = NULL;
 
 	if (err != 0) {
 		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!");
 	}
+     */
 }
 
 static void DoWriteContinue() {
@@ -388,7 +430,7 @@ static void DoWriteFinish() {
 
 }
 
-constexpr static bool isPowerOfTwo(uint32_t x) noexcept {
+static bool isPowerOfTwo(uint32_t x) {
 	return (x != 0) && ((x & (x - 1)) == 0);
 }
 
@@ -396,9 +438,11 @@ static void FromStart() {
 	auto result = PSSDKSetFPos(gFormatRecord->dataFork, gFormatRecord->posixFileDescriptor, gFormatRecord->pluginUsingPOSIXIO, fsFromStart, 0);
 
 	*gResult = result;
+#ifdef _WIN32
 	if (result != noErr) {
 		DisplayMessage((std::string("Error! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!");
 	}
+#endif
 }
 
 static void Read(int32_t count, void* buffer) {
@@ -406,9 +450,11 @@ static void Read(int32_t count, void* buffer) {
 	auto result = PSSDKRead(gFormatRecord->dataFork, gFormatRecord->posixFileDescriptor, gFormatRecord->pluginUsingPOSIXIO, &readCount, buffer);
 
 	*gResult = result;
+#ifdef _WIN32
 	if (result != noErr) {
 		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 	}
+#endif
 }
 
 static void Write(int32_t count, void* buffer) {
@@ -420,9 +466,11 @@ static void Write(int32_t count, void* buffer) {
 		DisplayMessage("Disk is Full!", "PAA save error!");
 		*gResult = eofErr;
 	}
+#ifdef _WIN32
 	else if (result != noErr) {
 		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(GetLastError())).c_str(), "PAA write error!");
 	}
+#endif
 }
 
 static void DisplayMessage(std::string titel, std::string message) {

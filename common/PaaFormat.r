@@ -5,7 +5,7 @@
 // The About box and resources are created in PIUtilities.r.
 // You can easily override them, if you like.
 
-#define plugInName			"PAA Plugin"
+#define plugInName			"PAA Format"
 #define plugInCopyrightYear	"2020"
 #define plugInDescription \
 	"An Adobe Photoshop¨ plug-in for the paa file format."
@@ -78,11 +78,12 @@ resource 'PiPL' (ResourceID, plugInName " PiPL", purgeable)
 		// Only RGB(A) is supported
 		SupportedModes
 		{
-			doesNotSupportBitmap, doesNotSupportGrayScale,
-			doesNotSupportIndexedColor, doesNotSupportRGBColor,
-			doesNotSupportCMYKColor, doesNotSupportHSLColor,
-			doesNotSupportHSBColor, doesNotSupportMultichannel,
-			doesNotSupportDuotone, doesNotSupportLABColor
+        //    doesSupportRGBColor
+			doesSupportBitmap, doesSupportGrayScale,
+			doesSupportIndexedColor, doesSupportRGBColor,
+			doesSupportCMYKColor, doesSupportHSLColor,
+			doesSupportHSBColor, doesSupportMultichannel,
+			doesSupportDuotone, doesSupportLABColor
 		},
 		
 		// If you want your format module always enabled.	
@@ -105,7 +106,7 @@ resource 'PiPL' (ResourceID, plugInName " PiPL", purgeable)
 		ReadExtensions { { 'PAA ' } },
 		WriteExtensions { { 'PAA ' } },
 		//FilteredExtensions { { 'PAA ' } },
-		FormatFlags { fmtDoesNotSavesImageResources, 
+		FormatFlags { fmtSavesImageResources, 
 		              fmtCanRead, 
 					  fmtCanWrite, 
 					  fmtCanWriteIfRead, 

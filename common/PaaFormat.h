@@ -12,6 +12,13 @@
 #include <string>
 #include <vector>
 
+#if __PIMac__
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <unistd.h>
+    #include <stdio.h>
+#endif
+
 #ifdef _WIN32
     #include <Windows.h>
     #include "..\win\AboutDialog.h"
@@ -30,7 +37,7 @@ static void Write(int32_t count, void* buffer);
 static void FromStart();
 
 // Read
-static void DoReadPrepare() noexcept;
+static void DoReadPrepare();
 static void DoReadStart();
 static void DoReadContinue();
 static void DoReadFinish();
@@ -49,5 +56,5 @@ static void DoEstimateStart();
 static void DoEstimateContinue();
 static void DoEstimateFinish();
 
-constexpr static bool isPowerOfTwo(uint32_t x) noexcept;
+static bool isPowerOfTwo(uint32_t x);
 static void DisplayMessage(std::string titel, std::string message);

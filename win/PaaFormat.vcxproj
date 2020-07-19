@@ -373,8 +373,10 @@ copy /Y "$(OutDir)$(ProjectName).bsc" "$(PS_DIR)\Plug-ins\File Formats\$(Project
     <ClCompile Include="..\..\..\common\sources\PIUtilitiesWin.cpp" />
     <ClCompile Include="..\common\PaaFormat.cpp" />
     <ClCompile Include="AboutDialog.cpp" />
+    <ClCompile Include="MessageBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\MessageBox.h" />
     <ClInclude Include="..\common\PaaFormat.h" />
     <ClInclude Include="..\common\PaaFormatTerminology.h" />
     <ClInclude Include="AboutDialog.h" />

@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 
+#include "MessageBox.h"
+
 #if __PIMac__
     #include <sys/types.h>
     #include <sys/stat.h>
@@ -57,4 +59,4 @@ static void DoEstimateContinue();
 static void DoEstimateFinish();
 
 static bool isPowerOfTwo(uint32_t x);
-static void DisplayMessage(std::string titel, std::string message);
+//static void DisplayMessage(std::string titel, std::string message);

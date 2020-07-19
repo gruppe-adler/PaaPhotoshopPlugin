@@ -10,6 +10,7 @@
 		62887AB724BA192A00DB8634 /* PaaFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62887AB624BA192A00DB8634 /* PaaFormat.cpp */; };
 		62887AB924BA276200DB8634 /* PaaFormat.r in Rez */ = {isa = PBXBuildFile; fileRef = 62887AB824BA276100DB8634 /* PaaFormat.r */; };
 		62EC6ABC24BB6A2500664247 /* PaaFormatUI.r in Rez */ = {isa = PBXBuildFile; fileRef = 62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */; };
+		62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6ABF24BB6C2300664247 /* MessageBox.mm */; };
 		64126C0209F9775D006DF4E6 /* PIUtilities.r in Rez */ = {isa = PBXBuildFile; fileRef = 64126B9A09F97565006DF4E6 /* PIUtilities.r */; };
 		64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2A09F979EA006DF4E6 /* PIUSuites.cpp */; };
 		64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C3409F97A19006DF4E6 /* PIUtilities.cpp */; };
@@ -31,6 +32,8 @@
 		62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = PaaFormatUI.r; sourceTree = "<group>"; };
 		62EC6ABD24BB6A4500664247 /* PaaFormatTerminology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaaFormatTerminology.h; path = ../common/PaaFormatTerminology.h; sourceTree = "<group>"; };
 		62EC6ABE24BB6A4500664247 /* PaaFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaaFormat.h; path = ../common/PaaFormat.h; sourceTree = "<group>"; };
+		62EC6ABF24BB6C2300664247 /* MessageBox.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = MessageBox.mm; sourceTree = "<group>"; };
+		62EC6AC224BB706800664247 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBox.h; path = ../common/MessageBox.h; sourceTree = "<group>"; };
 		64126B2D09F9751D006DF4E6 /* ASPreInclude.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ASPreInclude.h; sourceTree = "<group>"; };
 		64126B2E09F9751D006DF4E6 /* PIAbout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAbout.h; sourceTree = "<group>"; };
 		64126B2F09F9751D006DF4E6 /* PIAcquire.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAcquire.h; sourceTree = "<group>"; };
@@ -137,10 +140,12 @@
 		089C166AFE841209C02AAC07 /* SimpleFormat */ = {
 			isa = PBXGroup;
 			children = (
+				62EC6AC224BB706800664247 /* MessageBox.h */,
 				62EC6ABE24BB6A4500664247 /* PaaFormat.h */,
 				62EC6ABD24BB6A4500664247 /* PaaFormatTerminology.h */,
 				62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */,
 				62887AB824BA276100DB8634 /* PaaFormat.r */,
+				62EC6ABF24BB6C2300664247 /* MessageBox.mm */,
 				62887AB624BA192A00DB8634 /* PaaFormat.cpp */,
 				64126B7009F97565006DF4E6 /* SDK common */,
 				64126AD309F9751C006DF4E6 /* Photoshop common */,
@@ -400,6 +405,7 @@
 				64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */,
 				6493F375110E7F3700B0E165 /* FileUtilitiesMac.cpp in Sources */,
 				6458591F1DD4ED440071D7ED /* Timer.cpp in Sources */,
+				62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */,
 				647B633E11138E5B0067F135 /* DialogUtilitiesMac.cpp in Sources */,
 				647B65A2111396450067F135 /* FileUtilities.cpp in Sources */,
 			);

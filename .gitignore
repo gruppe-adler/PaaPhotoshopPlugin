@@ -1,4 +1,7 @@
 .vs
 .vscode
 *.user
+
+# Xcode
 .DS_Store
+xcuserdata/

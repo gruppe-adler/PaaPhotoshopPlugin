@@ -339,13 +339,13 @@ static void DoWriteStart() {
 
 	if (!isPowerOfTwo(width) || !isPowerOfTwo(height)) {
 		DisplayMessage("Dimensions have to be a power of two (2^n)", "PAA save error!");
-		*gResult = paramErr;
+		*gResult = noErr;
 		return;
 	}
 
 	if (gFormatRecord->imageMode != plugInModeRGBColor) {
 		DisplayMessage("Currently only RGB Mode is supported", "PAA save error!");
-		*gResult = paramErr;
+		*gResult = noErr;
 		return;
 	}
 
@@ -473,8 +473,8 @@ static void Write(int32_t count, void* buffer) {
 #endif
 }
 
-static void DisplayMessage(std::string titel, std::string message) {
-#ifdef _WIN32
-	MessageBox(GetActiveWindow(), titel.c_str(), message.c_str(), MB_OK | MB_ICONSTOP);
-#endif
-}
+//static void DisplayMessage(std::string titel, std::string message) {
+//#ifdef _WIN32
+//	MessageBox(GetActiveWindow(), titel.c_str(), message.c_str(), MB_OK | MB_ICONSTOP);
+//#endif
+//}

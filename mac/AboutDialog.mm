@@ -17,7 +17,11 @@ void DoAboutBox() {
     [alert setInformativeText:@"PAA Photoshop Plugin by Gruppe Adler"];
     [alert setAlertStyle:NSAlertStyleInformational];
     
-    [alert setIcon:[NSImage imageNamed:@"Adler"]];
+    NSBundle* bundle = [NSBundle bundleWithIdentifier:@"com.grad.paaps"];
+    NSImage* image = [bundle imageForResource:@"Adler"];
+    //NSImage* image = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Adler" ofType:@"png"]];
+    
+    [alert setIcon: image];
     
     const NSModalResponse buttonPressed = [alert runModal];
     

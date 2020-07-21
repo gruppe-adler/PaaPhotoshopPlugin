@@ -12,6 +12,7 @@
 		62EC6ABC24BB6A2500664247 /* PaaFormatUI.r in Rez */ = {isa = PBXBuildFile; fileRef = 62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */; };
 		62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6ABF24BB6C2300664247 /* MessageBox.mm */; };
 		62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B1824C7172400664247 /* AboutDialog.mm */; };
+		62EC6B2424C7462A00664247 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62EC6B2324C7462A00664247 /* Media.xcassets */; };
 		64126C0209F9775D006DF4E6 /* PIUtilities.r in Rez */ = {isa = PBXBuildFile; fileRef = 64126B9A09F97565006DF4E6 /* PIUtilities.r */; };
 		64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2A09F979EA006DF4E6 /* PIUSuites.cpp */; };
 		64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C3409F97A19006DF4E6 /* PIUtilities.cpp */; };
@@ -37,6 +38,7 @@
 		62EC6AC224BB706800664247 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBox.h; path = ../common/MessageBox.h; sourceTree = "<group>"; };
 		62EC6B1824C7172400664247 /* AboutDialog.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AboutDialog.mm; sourceTree = "<group>"; };
 		62EC6B1924C7172400664247 /* AboutDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutDialog.h; sourceTree = "<group>"; };
+		62EC6B2324C7462A00664247 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		64126B2D09F9751D006DF4E6 /* ASPreInclude.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ASPreInclude.h; sourceTree = "<group>"; };
 		64126B2E09F9751D006DF4E6 /* PIAbout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAbout.h; sourceTree = "<group>"; };
 		64126B2F09F9751D006DF4E6 /* PIAcquire.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAcquire.h; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		089C166AFE841209C02AAC07 /* SimpleFormat */ = {
 			isa = PBXGroup;
 			children = (
+				62EC6B2324C7462A00664247 /* Media.xcassets */,
 				62EC6B1824C7172400664247 /* AboutDialog.mm */,
 				62EC6B1924C7172400664247 /* AboutDialog.h */,
 				62EC6AC224BB706800664247 /* MessageBox.h */,
@@ -388,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62EC6B2424C7462A00664247 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +455,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLUGIN_TYPE = 8BIF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grad.paaps;
 				PRODUCT_NAME = PaaFormat;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				REZ_SEARCH_PATHS = (

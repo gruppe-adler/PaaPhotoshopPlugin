@@ -11,6 +11,7 @@
 		62887AB924BA276200DB8634 /* PaaFormat.r in Rez */ = {isa = PBXBuildFile; fileRef = 62887AB824BA276100DB8634 /* PaaFormat.r */; };
 		62EC6ABC24BB6A2500664247 /* PaaFormatUI.r in Rez */ = {isa = PBXBuildFile; fileRef = 62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */; };
 		62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6ABF24BB6C2300664247 /* MessageBox.mm */; };
+		62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B1824C7172400664247 /* AboutDialog.mm */; };
 		64126C0209F9775D006DF4E6 /* PIUtilities.r in Rez */ = {isa = PBXBuildFile; fileRef = 64126B9A09F97565006DF4E6 /* PIUtilities.r */; };
 		64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2A09F979EA006DF4E6 /* PIUSuites.cpp */; };
 		64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C3409F97A19006DF4E6 /* PIUtilities.cpp */; };
@@ -34,6 +35,8 @@
 		62EC6ABE24BB6A4500664247 /* PaaFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaaFormat.h; path = ../common/PaaFormat.h; sourceTree = "<group>"; };
 		62EC6ABF24BB6C2300664247 /* MessageBox.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = MessageBox.mm; sourceTree = "<group>"; };
 		62EC6AC224BB706800664247 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBox.h; path = ../common/MessageBox.h; sourceTree = "<group>"; };
+		62EC6B1824C7172400664247 /* AboutDialog.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AboutDialog.mm; sourceTree = "<group>"; };
+		62EC6B1924C7172400664247 /* AboutDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutDialog.h; sourceTree = "<group>"; };
 		64126B2D09F9751D006DF4E6 /* ASPreInclude.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ASPreInclude.h; sourceTree = "<group>"; };
 		64126B2E09F9751D006DF4E6 /* PIAbout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAbout.h; sourceTree = "<group>"; };
 		64126B2F09F9751D006DF4E6 /* PIAcquire.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAcquire.h; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		089C166AFE841209C02AAC07 /* SimpleFormat */ = {
 			isa = PBXGroup;
 			children = (
+				62EC6B1824C7172400664247 /* AboutDialog.mm */,
+				62EC6B1924C7172400664247 /* AboutDialog.h */,
 				62EC6AC224BB706800664247 /* MessageBox.h */,
 				62EC6ABE24BB6A4500664247 /* PaaFormat.h */,
 				62EC6ABD24BB6A4500664247 /* PaaFormatTerminology.h */,
@@ -349,7 +354,15 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					Adler,
+				);
 				LastUpgradeCheck = 1150;
+				TargetAttributes = {
+					8D01CCC60486CAD60068D4B7 = {
+						LastSwiftMigration = 1150;
+					};
+				};
 			};
 			buildConfigurationList = 4FADC23708B4156C00ABE55E /* Build configuration list for PBXProject "paaformat" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -408,6 +421,7 @@
 				62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */,
 				647B633E11138E5B0067F135 /* DialogUtilitiesMac.cpp in Sources */,
 				647B65A2111396450067F135 /* FileUtilities.cpp in Sources */,
+				62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,9 +432,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_ASSET_PATHS = "";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -431,9 +448,11 @@
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = ../../../common/resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLUGIN_TYPE = 8BIF;
 				PRODUCT_NAME = PaaFormat;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				REZ_SEARCH_PATHS = (
 					../../.././common/includes,
 					../../../.././photoshopapi/resources,
@@ -442,6 +461,9 @@
 					/usr/local/include,
 				);
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "PaaFormat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = plugin;
 				ZERO_LINK = NO;

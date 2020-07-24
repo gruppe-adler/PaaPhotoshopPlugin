@@ -60,5 +60,5 @@ static bool isPowerOfTwo(uint32_t x);
 static int32_t GetFileSizeFFR();
 
 // UI
-Boolean DoAboutUI(FormatRecordPtr gFormatRecord);
+bool DoAboutUI(FormatRecordPtr gFormatRecord);
 void DoMessageUI(std::string titel, std::string message);

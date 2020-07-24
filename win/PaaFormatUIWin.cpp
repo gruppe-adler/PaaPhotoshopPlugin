@@ -10,7 +10,7 @@
 
 #include "..\win\AboutDialog.h"
 
-Boolean DoAboutUI(FormatRecordPtr gFormatRecord)
+bool DoAboutUI(FormatRecordPtr gFormatRecord)
 {
 	AboutRecordPtr aboutRecord = reinterpret_cast<AboutRecordPtr>(gFormatRecord);
 	sSPBasic = aboutRecord->sSPBasic;

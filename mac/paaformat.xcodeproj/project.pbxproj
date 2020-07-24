@@ -368,9 +368,6 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				KnownAssetTags = (
-					Adler,
-				);
 				LastUpgradeCheck = 1150;
 				TargetAttributes = {
 					8D01CCC60486CAD60068D4B7 = {

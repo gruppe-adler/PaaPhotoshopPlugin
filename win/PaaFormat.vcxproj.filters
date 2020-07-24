@@ -78,7 +78,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="AdlerLogo.bmp">
+    <Image Include="AdlerPS.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

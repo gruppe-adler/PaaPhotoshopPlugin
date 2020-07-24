@@ -71,7 +71,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 304
         TOPMARGIN, 7
-        BOTTOMMARGIN, 211
+        BOTTOMMARGIN, 187
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -82,7 +82,7 @@ END
 // Bitmap
 //
 
-IDB_LOGO_BITMAP         BITMAP                  "AdlerLogo.bmp"
+IDB_LOGO_BITMAP         BITMAP                  "AdlerPS.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,16 +90,16 @@ IDB_LOGO_BITMAP         BITMAP                  "AdlerLogo.bmp"
 // Dialog
 //
 
-IDD_ABOUT_DIALOG DIALOGEX 0, 0, 311, 218
+IDD_ABOUT_DIALOG DIALOGEX 0, 0, 311, 194
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CONTROL         IDB_LOGO_BITMAP,IDC_LOGO_CONTROL,"Static",SS_BITMAP,69,7,171,158
-    LTEXT           "PAA Photoshop Plugin by Gruppe Adler",IDC_DESCRIPTION_TEXT,54,181,125,8
-    CONTROL         " <a>www.gruppe-adler.de</a> ",IDC_HP_LINK,"SysLink",WS_TABSTOP,182,181,74,9
-    LTEXT           "Report Issues at:",IDC_ISSUE_TEXT,25,195,57,8
+    CONTROL         IDB_LOGO_BITMAP,IDC_LOGO_CONTROL,"Static",SS_BITMAP | SS_CENTERIMAGE,44,7,223,144
+    LTEXT           "PAA Photoshop Plugin by Gruppe Adler",IDC_DESCRIPTION_TEXT,93,148,125,8
+    CONTROL         " <a>www.gruppe-adler.de</a> ",IDC_HP_LINK,"SysLink",WS_TABSTOP,119,158,74,9
+    LTEXT           "Report Issues at:",IDC_ISSUE_TEXT,28,171,57,8
     CONTROL         "<a>https://github.com/gruppe-adler/PaaPhotoshopPlugin/issues</a>",IDC_GITHUB_LINK,
-                    "SysLink",WS_TABSTOP,88,195,198,11
+                    "SysLink",WS_TABSTOP,86,171,196,11
 END
 
 #endif    // English (United Kingdom) resources

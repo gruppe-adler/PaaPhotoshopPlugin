@@ -26,17 +26,7 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 
 		if (selector == formatSelectorAbout)
 		{
-#ifdef _WIN32
-			AboutRecordPtr aboutRecord = reinterpret_cast<AboutRecordPtr>(formatParamBlock);
-			sSPBasic = aboutRecord->sSPBasic;
-			gPluginRef = reinterpret_cast<SPPluginRef>(aboutRecord->plugInRef);
-			auto aDiag = new AboutDialog();
-			aDiag->RunModal(GetDLLInstance(gPluginRef), IDD_ABOUT_DIALOG, GetActiveWindow());
-#endif
-#ifdef __PIMac__
-            //DoAboutBox();
-            DoAboutUI();
-#endif
+			DoAboutUI(gFormatRecord);
 		}
 		else
 		{
@@ -411,9 +401,9 @@ int32_t GetFileSizeFFR() {
         LARGE_INTEGER fileSize;
         bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
         if (!ret) {
-            DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
+            DoMessageUI((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
             *gResult = readErr;
-            return;
+            return 0;
         }
         filesize = fileSize.QuadPart;
     #endif
@@ -437,7 +427,7 @@ static void FromStart() {
 	*gResult = result;
 #ifdef _WIN32
 	if (result != noErr) {
-		DisplayMessage((std::string("Error! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!");
+		DoMessageUI((std::string("Error! Code: ") + std::to_string(GetLastError())).c_str(), "PAA Save Error!");
 	}
 #endif
 }
@@ -449,7 +439,7 @@ static void Read(int32_t count, void* buffer) {
 	*gResult = result;
 #ifdef _WIN32
 	if (result != noErr) {
-		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
+		DoMessageUI((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
 	}
 #endif
 }
@@ -465,7 +455,7 @@ static void Write(int32_t count, void* buffer) {
 	}
 #ifdef _WIN32
 	else if (result != noErr) {
-		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(GetLastError())).c_str(), "PAA write error!");
+		DoMessageUI((std::string("Error during writing! Code: ") + std::to_string(GetLastError())).c_str(), "PAA write error!");
 	}
 #endif
 }

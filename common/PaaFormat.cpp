@@ -34,7 +34,8 @@ DLLExport MACPASCAL void PluginMain(const int16 selector,
 			aDiag->RunModal(GetDLLInstance(gPluginRef), IDD_ABOUT_DIALOG, GetActiveWindow());
 #endif
 #ifdef __PIMac__
-            DoAboutBox();
+            //DoAboutBox();
+            DoAboutUI();
 #endif
 		}
 		else

@@ -60,4 +60,6 @@ static void DoEstimateContinue();
 static void DoEstimateFinish();
 
 static bool isPowerOfTwo(uint32_t x);
+
+Boolean DoAboutUI(void);
 //static void DisplayMessage(std::string titel, std::string message);

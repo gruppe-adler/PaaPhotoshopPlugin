@@ -13,6 +13,9 @@
 		62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6ABF24BB6C2300664247 /* MessageBox.mm */; };
 		62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B1824C7172400664247 /* AboutDialog.mm */; };
 		62EC6B2424C7462A00664247 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62EC6B2324C7462A00664247 /* Media.xcassets */; };
+		62EC6B2824C74C5B00664247 /* AboutDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC6B2624C74C5A00664247 /* AboutDialog.xib */; };
+		62EC6B2924C74C5B00664247 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B2724C74C5A00664247 /* AboutController.m */; };
+		62EC6B2B24C74CC900664247 /* PaaFormatUIMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B2A24C74CC900664247 /* PaaFormatUIMac.mm */; };
 		64126C0209F9775D006DF4E6 /* PIUtilities.r in Rez */ = {isa = PBXBuildFile; fileRef = 64126B9A09F97565006DF4E6 /* PIUtilities.r */; };
 		64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2A09F979EA006DF4E6 /* PIUSuites.cpp */; };
 		64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C3409F97A19006DF4E6 /* PIUtilities.cpp */; };
@@ -39,6 +42,10 @@
 		62EC6B1824C7172400664247 /* AboutDialog.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AboutDialog.mm; sourceTree = "<group>"; };
 		62EC6B1924C7172400664247 /* AboutDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutDialog.h; sourceTree = "<group>"; };
 		62EC6B2324C7462A00664247 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		62EC6B2524C74C5900664247 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		62EC6B2624C74C5A00664247 /* AboutDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutDialog.xib; sourceTree = "<group>"; };
+		62EC6B2724C74C5A00664247 /* AboutController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AboutController.m; sourceTree = "<group>"; };
+		62EC6B2A24C74CC900664247 /* PaaFormatUIMac.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = PaaFormatUIMac.mm; sourceTree = "<group>"; };
 		64126B2D09F9751D006DF4E6 /* ASPreInclude.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ASPreInclude.h; sourceTree = "<group>"; };
 		64126B2E09F9751D006DF4E6 /* PIAbout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAbout.h; sourceTree = "<group>"; };
 		64126B2F09F9751D006DF4E6 /* PIAcquire.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PIAcquire.h; sourceTree = "<group>"; };
@@ -145,6 +152,10 @@
 		089C166AFE841209C02AAC07 /* SimpleFormat */ = {
 			isa = PBXGroup;
 			children = (
+				62EC6B2A24C74CC900664247 /* PaaFormatUIMac.mm */,
+				62EC6B2624C74C5A00664247 /* AboutDialog.xib */,
+				62EC6B2524C74C5900664247 /* AboutController.h */,
+				62EC6B2724C74C5A00664247 /* AboutController.m */,
 				62EC6B2324C7462A00664247 /* Media.xcassets */,
 				62EC6B1824C7172400664247 /* AboutDialog.mm */,
 				62EC6B1924C7172400664247 /* AboutDialog.h */,
@@ -392,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62EC6B2424C7462A00664247 /* Media.xcassets in Resources */,
+				62EC6B2824C74C5B00664247 /* AboutDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,12 +429,14 @@
 			files = (
 				62887AB724BA192A00DB8634 /* PaaFormat.cpp in Sources */,
 				645859201DD4ED440071D7ED /* Logger.cpp in Sources */,
+				62EC6B2B24C74CC900664247 /* PaaFormatUIMac.mm in Sources */,
 				6458591E1DD4ED440071D7ED /* PIUFile.cpp in Sources */,
 				64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */,
 				64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */,
 				6493F375110E7F3700B0E165 /* FileUtilitiesMac.cpp in Sources */,
 				6458591F1DD4ED440071D7ED /* Timer.cpp in Sources */,
 				62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */,
+				62EC6B2924C74C5B00664247 /* AboutController.m in Sources */,
 				647B633E11138E5B0067F135 /* DialogUtilitiesMac.cpp in Sources */,
 				647B65A2111396450067F135 /* FileUtilities.cpp in Sources */,
 				62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */,

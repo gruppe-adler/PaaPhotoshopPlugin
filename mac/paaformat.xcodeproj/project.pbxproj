@@ -10,8 +10,6 @@
 		62887AB724BA192A00DB8634 /* PaaFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62887AB624BA192A00DB8634 /* PaaFormat.cpp */; };
 		62887AB924BA276200DB8634 /* PaaFormat.r in Rez */ = {isa = PBXBuildFile; fileRef = 62887AB824BA276100DB8634 /* PaaFormat.r */; };
 		62EC6ABC24BB6A2500664247 /* PaaFormatUI.r in Rez */ = {isa = PBXBuildFile; fileRef = 62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */; };
-		62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6ABF24BB6C2300664247 /* MessageBox.mm */; };
-		62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B1824C7172400664247 /* AboutDialog.mm */; };
 		62EC6B2424C7462A00664247 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62EC6B2324C7462A00664247 /* Media.xcassets */; };
 		62EC6B2824C74C5B00664247 /* AboutDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC6B2624C74C5A00664247 /* AboutDialog.xib */; };
 		62EC6B2924C74C5B00664247 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC6B2724C74C5A00664247 /* AboutController.m */; };
@@ -20,8 +18,6 @@
 		64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2A09F979EA006DF4E6 /* PIUSuites.cpp */; };
 		64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C3409F97A19006DF4E6 /* PIUtilities.cpp */; };
 		6458591E1DD4ED440071D7ED /* PIUFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6458591B1DD4ED440071D7ED /* PIUFile.cpp */; };
-		6458591F1DD4ED440071D7ED /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6458591C1DD4ED440071D7ED /* Timer.cpp */; };
-		645859201DD4ED440071D7ED /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6458591D1DD4ED440071D7ED /* Logger.cpp */; };
 		646B5CAA10D31664001A7C6E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646B5CA910D31664001A7C6E /* Cocoa.framework */; };
 		646B5D5F10D31674001A7C6E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646B5D5E10D31674001A7C6E /* AppKit.framework */; };
 		647B633E11138E5B0067F135 /* DialogUtilitiesMac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64126C2F09F979F7006DF4E6 /* DialogUtilitiesMac.cpp */; };
@@ -37,10 +33,6 @@
 		62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = PaaFormatUI.r; sourceTree = "<group>"; };
 		62EC6ABD24BB6A4500664247 /* PaaFormatTerminology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaaFormatTerminology.h; path = ../common/PaaFormatTerminology.h; sourceTree = "<group>"; };
 		62EC6ABE24BB6A4500664247 /* PaaFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaaFormat.h; path = ../common/PaaFormat.h; sourceTree = "<group>"; };
-		62EC6ABF24BB6C2300664247 /* MessageBox.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = MessageBox.mm; sourceTree = "<group>"; };
-		62EC6AC224BB706800664247 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBox.h; path = ../common/MessageBox.h; sourceTree = "<group>"; };
-		62EC6B1824C7172400664247 /* AboutDialog.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AboutDialog.mm; sourceTree = "<group>"; };
-		62EC6B1924C7172400664247 /* AboutDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutDialog.h; sourceTree = "<group>"; };
 		62EC6B2324C7462A00664247 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		62EC6B2524C74C5900664247 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
 		62EC6B2624C74C5A00664247 /* AboutDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutDialog.xib; sourceTree = "<group>"; };
@@ -117,10 +109,6 @@
 		64126C2F09F979F7006DF4E6 /* DialogUtilitiesMac.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = DialogUtilitiesMac.cpp; sourceTree = "<group>"; };
 		64126C3409F97A19006DF4E6 /* PIUtilities.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = PIUtilities.cpp; sourceTree = "<group>"; };
 		6458591B1DD4ED440071D7ED /* PIUFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = PIUFile.cpp; sourceTree = "<group>"; };
-		6458591C1DD4ED440071D7ED /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
-		6458591D1DD4ED440071D7ED /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
-		645859221DD4ED560071D7ED /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
-		645859231DD4ED560071D7ED /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		646B5C9E10D3159B001A7C6E /* PSIntTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PSIntTypes.h; sourceTree = "<group>"; };
 		646B5CA910D31664001A7C6E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = ../../../../../../../../../System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		646B5D5E10D31674001A7C6E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../../../../System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -149,7 +137,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		089C166AFE841209C02AAC07 /* SimpleFormat */ = {
+		089C166AFE841209C02AAC07 /* PaaFormat */ = {
 			isa = PBXGroup;
 			children = (
 				62EC6B2A24C74CC900664247 /* PaaFormatUIMac.mm */,
@@ -157,21 +145,17 @@
 				62EC6B2524C74C5900664247 /* AboutController.h */,
 				62EC6B2724C74C5A00664247 /* AboutController.m */,
 				62EC6B2324C7462A00664247 /* Media.xcassets */,
-				62EC6B1824C7172400664247 /* AboutDialog.mm */,
-				62EC6B1924C7172400664247 /* AboutDialog.h */,
-				62EC6AC224BB706800664247 /* MessageBox.h */,
 				62EC6ABE24BB6A4500664247 /* PaaFormat.h */,
 				62EC6ABD24BB6A4500664247 /* PaaFormatTerminology.h */,
 				62EC6ABB24BB6A2500664247 /* PaaFormatUI.r */,
 				62887AB824BA276100DB8634 /* PaaFormat.r */,
-				62EC6ABF24BB6C2300664247 /* MessageBox.mm */,
 				62887AB624BA192A00DB8634 /* PaaFormat.cpp */,
 				64126B7009F97565006DF4E6 /* SDK common */,
 				64126AD309F9751C006DF4E6 /* Photoshop common */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 			);
-			name = SimpleFormat;
+			name = PaaFormat;
 			sourceTree = "<group>";
 		};
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
@@ -297,8 +281,6 @@
 		64126B7109F97565006DF4E6 /* includes */ = {
 			isa = PBXGroup;
 			children = (
-				645859221DD4ED560071D7ED /* Timer.h */,
-				645859231DD4ED560071D7ED /* Logger.h */,
 				64126B7409F97565006DF4E6 /* DialogUtilities.h */,
 				64126B7609F97565006DF4E6 /* FileUtilities.h */,
 				64126B7B09F97565006DF4E6 /* MachOMacrezXcode.h */,
@@ -328,8 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				6458591B1DD4ED440071D7ED /* PIUFile.cpp */,
-				6458591C1DD4ED440071D7ED /* Timer.cpp */,
-				6458591D1DD4ED440071D7ED /* Logger.cpp */,
 				647B65A1111396450067F135 /* FileUtilities.cpp */,
 				64C38C0510D6A968006A6A12 /* FileUtilitiesMac.cpp */,
 				64126C2509F979E1006DF4E6 /* PIMacUI.cpp */,
@@ -358,7 +338,7 @@
 			);
 			name = PaaFormat;
 			productInstallPath = "$(HOME)/Library/Bundles";
-			productName = SimpleFormat;
+			productName = PaaFormat;
 			productReference = 8D01CCD20486CAD60068D4B7 /* PaaFormat.plugin */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -385,7 +365,7 @@
 				French,
 				German,
 			);
-			mainGroup = 089C166AFE841209C02AAC07 /* SimpleFormat */;
+			mainGroup = 089C166AFE841209C02AAC07 /* PaaFormat */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -425,18 +405,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				62887AB724BA192A00DB8634 /* PaaFormat.cpp in Sources */,
-				645859201DD4ED440071D7ED /* Logger.cpp in Sources */,
 				62EC6B2B24C74CC900664247 /* PaaFormatUIMac.mm in Sources */,
 				6458591E1DD4ED440071D7ED /* PIUFile.cpp in Sources */,
 				64126C2B09F979EA006DF4E6 /* PIUSuites.cpp in Sources */,
 				64126C3509F97A19006DF4E6 /* PIUtilities.cpp in Sources */,
 				6493F375110E7F3700B0E165 /* FileUtilitiesMac.cpp in Sources */,
-				6458591F1DD4ED440071D7ED /* Timer.cpp in Sources */,
-				62EC6AC024BB6C2300664247 /* MessageBox.mm in Sources */,
 				62EC6B2924C74C5B00664247 /* AboutController.m in Sources */,
 				647B633E11138E5B0067F135 /* DialogUtilitiesMac.cpp in Sources */,
 				647B65A2111396450067F135 /* FileUtilities.cpp in Sources */,
-				62EC6B1A24C7172400664247 /* AboutDialog.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

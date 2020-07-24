@@ -78,12 +78,11 @@ resource 'PiPL' (ResourceID, plugInName " PiPL", purgeable)
 		// Only RGB(A) is supported
 		SupportedModes
 		{
-        //    doesSupportRGBColor
-			doesSupportBitmap, doesSupportGrayScale,
-			doesSupportIndexedColor, doesSupportRGBColor,
-			doesSupportCMYKColor, doesSupportHSLColor,
-			doesSupportHSBColor, doesSupportMultichannel,
-			doesSupportDuotone, doesSupportLABColor
+			noBitmap, noGrayScale,
+			noIndexedColor, doesSupportRGBColor,
+			noCMYKColor, noHSLColor,
+			noHSBColor, noMultichannel,
+			noDuotone, noLABColor
 		},
 		
 		// If you want your format module always enabled.	

@@ -3,8 +3,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-OSStatus orderWindowFrontHistory(void);
-OSStatus initializeCocoaHistory(void);
+OSStatus orderWindowFrontAbout(void);
+OSStatus initializeCocoaAbout(void);
 
 @interface AboutController : NSWindowController<NSWindowDelegate>
 {

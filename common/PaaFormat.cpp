@@ -155,22 +155,7 @@ static void DoReadPrepare() {
 static void DoReadStart() {
 	FromStart();
     
-    size_t filesize = 0;
-#if _WIN32
-	LARGE_INTEGER fileSize;
-	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
-	if (!ret) {
-		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
-		*gResult = readErr;
-		return;
-	}
-    filesize = fileSize.QuadPart;
-#endif
-#if __PIMac__
-    struct stat fileStat;
-    fstat(gFormatRecord->posixFileDescriptor, &fileStat);
-    filesize = fileStat.st_size;
-#endif
+    size_t filesize = GetFileSizeFFR();
 
 	std::vector<uint8_t> fileData;
 	fileData.resize(filesize);
@@ -182,7 +167,7 @@ static void DoReadStart() {
 		paa.readPaa(fileData, true);
 	}
 	catch (std::runtime_error& ex) {
-		DisplayMessage((std::string("Error during reading! Code: ") + ex.what()).c_str(), "PAA read error!");
+		DoMessageUI((std::string("Error during reading! Code: ") + ex.what()).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -224,22 +209,7 @@ static void DoReadStart() {
 
 static void DoReadContinue() {
 	FromStart();
-    int filesize = 0;
-#ifdef _WIN32
-	LARGE_INTEGER fileSize;
-	bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
-	if (!ret) {
-		DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
-		*gResult = readErr;
-		return;
-	}
-    filesize = fileSize.QuadPart;
-#endif
-#if __PIMac__
-    struct stat fileStat;
-    fstat(gFormatRecord->posixFileDescriptor, &fileStat);
-    filesize = fileStat.st_size;
-#endif
+    int filesize = GetFileSizeFFR();
     
     std::vector<uint8_t> fileData;
     fileData.resize(filesize);
@@ -252,7 +222,7 @@ static void DoReadContinue() {
 		paa.readPaa(fileData);
 	}
 	catch (std::runtime_error& ex) {
-		DisplayMessage((std::string("Error during reading! ") + ex.what()).c_str(), "PAA read error!");
+		DoMessageUI((std::string("Error during reading! ") + ex.what()).c_str(), "PAA read error!");
 		*gResult = readErr;
 		return;
 	}
@@ -342,13 +312,13 @@ static void DoWriteStart() {
 	const int height = (gFormatRecord->PluginUsing32BitCoordinates ? gFormatRecord->imageSize32.v : gFormatRecord->imageSize.v);
 
 	if (!isPowerOfTwo(width) || !isPowerOfTwo(height)) {
-		DisplayMessage("Dimensions have to be a power of two (2^n)", "PAA save error!");
+		DoMessageUI("Dimensions have to be a power of two (2^n)", "PAA save error!");
 		*gResult = noErr;
 		return;
 	}
 
 	if (gFormatRecord->imageMode != plugInModeRGBColor) {
-		DisplayMessage("Currently only RGB Mode is supported", "PAA save error!");
+		DoMessageUI("Currently only RGB Mode is supported", "PAA save error!");
 		*gResult = noErr;
 		return;
 	}
@@ -409,7 +379,7 @@ static void DoWriteStart() {
 		dataOut = paa.writePaa();
 	}
 	catch (std::runtime_error& ex) {
-		DisplayMessage((std::string("Error during saving! ") + ex.what()).c_str(), "PAA save error!");
+		DoMessageUI((std::string("Error during saving! ") + ex.what()).c_str(), "PAA save error!");
 		*gResult = writErr;
 		return;
 	}
@@ -432,6 +402,29 @@ static void DoWriteContinue() {
 
 static void DoWriteFinish() {
 
+}
+
+int32_t GetFileSizeFFR() {
+    int32_t filesize = 0;
+    
+    #ifdef _WIN32
+        LARGE_INTEGER fileSize;
+        bool ret = GetFileSizeEx((HANDLE)gFormatRecord->dataFork, &fileSize);
+        if (!ret) {
+            DisplayMessage((std::string("Error during reading! Code: ") + std::to_string(GetLastError())).c_str(), "PAA read error!");
+            *gResult = readErr;
+            return;
+        }
+        filesize = fileSize.QuadPart;
+    #endif
+    
+    #if __PIMac__
+        struct stat fileStat;
+        fstat(gFormatRecord->posixFileDescriptor, &fileStat);
+        filesize = fileStat.st_size;
+    #endif
+    
+    return filesize;
 }
 
 static bool isPowerOfTwo(uint32_t x) {
@@ -467,7 +460,7 @@ static void Write(int32_t count, void* buffer) {
 
 	*gResult = result;
 	if (result == noErr && writeCount != count) {
-		DisplayMessage("Disk is Full!", "PAA save error!");
+		DoMessageUI("Disk is Full!", "PAA save error!");
 		*gResult = eofErr;
 	}
 #ifdef _WIN32

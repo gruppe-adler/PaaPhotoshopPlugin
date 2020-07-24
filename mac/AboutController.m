@@ -64,13 +64,13 @@ AboutController *gAboutController = NULL;
 @end
 
 /* Carbon entry point and C-callable wrapper functions*/
-OSStatus initializeCocoaHistory()
+OSStatus initializeCocoaAbout()
 {
     [[AboutController alloc] init];
     return noErr;
 }
 
-OSStatus orderWindowFrontHistory(void)
+OSStatus orderWindowFrontAbout(void)
 {
     int okPressed = [[AboutController aboutController] showWindow];
     return okPressed;

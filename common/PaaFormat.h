@@ -12,14 +12,11 @@
 #include <string>
 #include <vector>
 
-#include "MessageBox.h"
-
 #if __PIMac__
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <unistd.h>
     #include <stdio.h>
-    #include "AboutDialog.h"
 #endif
 
 #ifdef _WIN32
@@ -27,6 +24,7 @@
     #include "..\win\AboutDialog.h"
     #include "..\win\paaformat-sym.h"
 #endif
+
 extern SPPluginRef gPluginRef;
 extern FormatRecordPtr gFormatRecord;
 extern int16* gResult;
@@ -60,6 +58,8 @@ static void DoEstimateContinue();
 static void DoEstimateFinish();
 
 static bool isPowerOfTwo(uint32_t x);
+static int32_t GetFileSizeFFR();
 
+// UI
 Boolean DoAboutUI(void);
-//static void DisplayMessage(std::string titel, std::string message);
+void DoMessageUI(std::string titel, std::string message);

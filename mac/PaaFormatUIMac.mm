@@ -1,4 +1,5 @@
 #include <Cocoa/Cocoa.h>
+#include "PIFormat.h"
 #include "PIDefines.h"
 #include "AboutController.h"
 #include <string>
@@ -22,7 +23,7 @@ void DoMessageUI(std::string title, std::string message) {
     [alert release];
 }
 
-Boolean DoAboutUI ()
+Boolean DoAboutUI (FormatRecordPtr gFormatRecord)
 {
     OSStatus err = initializeCocoaAbout();
     

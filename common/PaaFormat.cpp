@@ -376,14 +376,14 @@ static void DoWriteStart() {
 
 	Write(dataOut.size(), dataOut.data());
     gFormatRecord->data = NULL;
-    /*
+    
+#ifdef _WIN32
     auto err = GetLastError();
-	gFormatRecord->data = NULL;
 
 	if (err != 0) {
-		DisplayMessage((std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!");
+		DoMessageUI((std::string("Error during writing! Code: ") + std::to_string(err)).c_str(), "PAA writing error!");
 	}
-     */
+#endif
 }
 
 static void DoWriteContinue() {

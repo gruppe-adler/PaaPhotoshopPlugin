@@ -237,9 +237,9 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).8bi"
-copy /Y "$(OutDir)$(ProjectName).pdb" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).pdb"
-copy /Y "$(OutDir)$(ProjectName).bsc" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).bsc"</Command>
+      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\$(ProjectName).8bi"
+copy /Y "$(OutDir)$(ProjectName).pdb" "$(PS_DIR)\Plug-ins\$(ProjectName).pdb"
+copy /Y "$(OutDir)$(ProjectName).bsc" "$(PS_DIR)\Plug-ins\$(ProjectName).bsc"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -306,7 +306,7 @@ copy /Y "$(OutDir)$(ProjectName).bsc" "$(PS_DIR)\Plug-ins\File Formats\$(Project
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\File Formats\$(ProjectName).8bi"</Command>
+      <Command>copy /Y "$(OutDir)$(ProjectName).8bi" "$(PS_DIR)\Plug-ins\$(ProjectName).8bi"</Command>
     </PostBuildEvent>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

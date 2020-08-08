@@ -4,7 +4,7 @@
 
 # Gruppe Adler PAA Photoshop Plugin
 
-PaaPhotoshopPlugin is a Photoshop File Format Plugin for opening and saving PAA images in Photoshop. For more information on the PAA file format check out the  [public PAA file format specification](https://community.bistudio.com/wiki/PAA_File_Format).
+PaaPhotoshopPlugin is a Photoshop File Format Plugin for opening and saving Arma PAA images in Photoshop. For more information on the Arma PAA file format check out the  [public PAA file format specification](https://community.bistudio.com/wiki/PAA_File_Format).
 
 # Installation
 
